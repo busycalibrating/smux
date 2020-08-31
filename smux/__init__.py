@@ -155,7 +155,7 @@ while [ -e /proc/$pid ]; do sleep 5; done
         node=cls.get_node(jobid)
         name=cls.get_job_name(jobid)
         time.sleep(1)
-        os.execv("/usr/bin/ssh",["ssh",node,"-t","tmux attach-session -t %s"%name])
+        os.execv("/usr/bin/ssh",["ssh",node,"-t",". ~/.bashrc ; tmux attach-session -t %s"%name])
 
     @classmethod
     def connectJob(cls,args):
