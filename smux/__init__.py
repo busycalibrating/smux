@@ -262,7 +262,4 @@ while [ -e /proc/$pid ]; do sleep 5; done
         except SmuxConnectionError as e:
             print(e)
         except Exception as e:
-            print(e)
-            import traceback
-            print(traceback.format_exc())
             parser.print_help()
