@@ -82,8 +82,8 @@ while [ -e /proc/$pid ]; do sleep 5; done
         import time
         import sys
         command = ['sbatch',
-                "--ntasks={}".format(args.ntasks[0]),
-                "-J {}".format(args.jobname[0])
+                "--ntasks","{}".format(args.ntasks[0]),
+                "-J","{}".format(args.jobname[0])
                 ]
         if args.account[0] != None:
             command.append("--account={}".format(args.account[0]))
