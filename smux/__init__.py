@@ -164,7 +164,7 @@ while [ -e /proc/$pid ]; do sleep 5; done
         time.sleep(1)
         import shutil
         srunpath = shutil.which('srun')
-        os.execv(srunpath,["srun","--pty","-O","--jobid","{}".format(jobid),"tmux","attach-session","-t","{}".format(name)])
+        os.execv(srunpath,["srun","--pty","-O","--ntasks","1","--jobid","{}".format(jobid),"tmux","attach-session","-t","{}".format(name)])
 
     @classmethod
     def connectJob(cls,args):
