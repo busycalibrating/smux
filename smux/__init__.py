@@ -44,6 +44,25 @@ while [ -e /proc/$pid ]; do sleep 5; done
     def whyAreWeWaiting(cls,args):
         print("Sorry, I haven't written this function yet")
 
+    @classmethod
+    def check_for_nested_tmux(cls):
+        """Return True if user already in tmux session.
+        
+        Normally when you are already in a tmux session and you try to create a
+        nested tmux session, you get warned:
+        ```
+        $ tmux 
+        sessions should be nested with care, unset $TMUX to force
+        ```
+
+        However when using smux inside of a tmux session, you get no such warning
+        and the tmux session quietly fails to start. 
+        """
+        if "TMUX" in os.environ:
+            print("ERROR: You cannot use smux while already inside a tmux session")
+            return True
+        return False
+
 
     @classmethod
     def get_job_list(cls):
@@ -79,6 +98,10 @@ while [ -e /proc/$pid ]; do sleep 5; done
 
     @classmethod
     def newJob(cls,args):
+        # Don't let user attach to a tmux if they are already in a tmux session
+        if cls.check_for_nested_tmux():
+            raise SmuxConnectionError("You cannot use smux while already inside a tmux session")
+
         import time
         import sys
         command = ['sbatch',
@@ -168,6 +191,10 @@ while [ -e /proc/$pid ]; do sleep 5; done
 
     @classmethod
     def connectJob(cls,args):
+        # Don't let user attach to a tmux if they are already in a tmux session
+        if cls.check_for_nested_tmux():
+            raise SmuxConnectionError("You cannot use smux while already inside a tmux session")
+
         jobs = cls.get_job_list()
         try:
             jobid=args.jobid[0]
