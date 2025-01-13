@@ -23,7 +23,7 @@ setup(
     desktop_entries={
         },
 
-    version='0.0.5',
+    version='0.0.6',
 
     description='Python package to manipulate SLURM and ssh into providing interactive shells on the SLURM queue',
     long_description=long_description,
