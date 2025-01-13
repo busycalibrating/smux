@@ -32,7 +32,7 @@ First ensure the `version` has been updated in `setup.py`, and that the correspo
 Then run the following commands, ensuring the version you set here matches that in `setup.py`.
 
 ```bash
-VENV=/usr/local/smux/0.0.5
+VENV=/usr/local/smux/0.0.6
 
 # Create virtual environment and install latest smux into it
 python -m venv $VENV
@@ -47,12 +47,12 @@ sed -i '1 s/^\(#!.*python3\?\)$/\1 -E/' $VENV/bin/smux
 At this stage, you should test that this is working by opening a new shell, and
 testing it with e.g.
 ```bash
-VENV=/usr/local/smux/0.0.5
+VENV=/usr/local/smux/0.0.6
 $VENV/bin/smux new-session
 ```
 
 Once you are happy with that, you can confirm the deployment with
 ```bash
-VENV=/usr/local/smux/0.0.5
+VENV=/usr/local/smux/0.0.6
 ln -s $VENV/bin/smux /usr/local/bin/smux
 ```
