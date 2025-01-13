@@ -126,6 +126,10 @@ while [ -e /proc/$pid ]; do sleep 5; done
             command.append("--qos={}".format(args.qos[0]))
         if args.time[0] != None:
             command.append("--time={}".format(args.time[0]))
+        if args.mail_type[0] != None:
+            command.append("--mail-type={}".format(args.mail_type[0]))
+        if args.mail_user[0] != None:
+            command.append("--mail-user={}".format(args.mail_user[0]))
 
         '''This section appends the --output and --error to the command'''
 
@@ -276,6 +280,8 @@ while [ -e /proc/$pid ]; do sleep 5; done
         new.add_argument('--gres',default=[None], metavar="<n>",nargs=1,help="The type and number of gpus needed for each task")
         new.add_argument('-o','--output',default=["smux-%j.out"], metavar="<n>",nargs=1,help="Standard output file name")
         new.add_argument('-e','--error', default=["smux-%j.err"], metavar="<n>",nargs=1,help="Error output file name")
+        new.add_argument('--mail-type', default=[None], metavar="<n>",nargs=1,help="Notify user by email when certain event types occur (https://slurm.schedmd.com/srun.html#OPT_mail-type)")
+        new.add_argument('--mail-user', default=[None], metavar="<n>",nargs=1,help="User to receive email notification of state changes as defined by --mail-type (https://slurm.schedmd.com/srun.html#OPT_mail-user)")
         new.set_defaults(func=Smux.newJob)
         listjobs=subparser.add_parser('list-sessions',aliases=['l'])
         listjobs.set_defaults(func=lambda x: Smux.listJobs(user,x))
