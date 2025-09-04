@@ -1,5 +1,8 @@
-smux
+smux*
 ====
+
+> Note: this repo was imported from the [Monash HPC repo found here](https://gitlab.erc.monash.edu/hpc-team/smux), extended for my needs. 
+
 
 smux is a wrapper around slurm and tmux. It allows tmux sessions to
 run on a compute node under a slurm job and takes care of deternining 
